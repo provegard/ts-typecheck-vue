@@ -1,0 +1,24 @@
+{
+  "name": "ts-typecheck-vue",
+  "version": "1.0.0",
+  "description": "A TypeScript type checker that supports Vue SFC files",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/provegard/ts-typecheck-vue.git"
+  },
+  "keywords": [
+    "typescript",
+    "vue",
+    "sfc"
+  ],
+  "author": "Per Rovegård <per@rovegard.se>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/provegard/ts-typecheck-vue/issues"
+  },
+  "homepage": "https://github.com/provegard/ts-typecheck-vue#readme"
+}
