@@ -1,5 +1,5 @@
 import * as ts from "typescript"
-import { ProgramOptions } from "./types"
+import { ProgramOptions } from "./options"
 import { removeOneExt, extractTsScriptPart } from "./util"
 
 export function createCompilerHost(options: ts.CompilerOptions, programOptions: ProgramOptions): ts.CompilerHost {
