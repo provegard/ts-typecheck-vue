@@ -1,7 +1,7 @@
 import ts from "typescript"
 
 export interface ProgramOptions {
-    tsconfigPath?: string
+    tsconfigPath: string
     enableVueSupport?: boolean
     pretty?: boolean
 }

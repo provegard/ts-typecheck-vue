@@ -7,6 +7,7 @@ describe("compiler host", () => {
     it("returns a default host if Vue support is disabled", () => {
         const options: ProgramOptions = {
             enableVueSupport: false,
+            tsconfigPath: "foo",
         }
         const compilerOptions: ts.CompilerOptions = {}
         const host = createCompilerHost(compilerOptions, options)
@@ -19,6 +20,7 @@ describe("compiler host", () => {
         beforeEach(() => {
             const options: ProgramOptions = {
                 enableVueSupport: true,
+                tsconfigPath: "foo",
             }
             const compilerOptions: ts.CompilerOptions = {}
             host = createCompilerHost(compilerOptions, options)
