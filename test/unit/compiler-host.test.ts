@@ -1,8 +1,7 @@
 import { expect } from "chai"
-import * as ts from "typescript"
+import ts from "typescript"
 import { createCompilerHost } from "../../src/compiler-host"
 import { ProgramOptions } from "../../src/options"
-import * as fs from "fs"
 
 describe("compiler host", () => {
     it("returns a default host if Vue support is disabled", () => {
