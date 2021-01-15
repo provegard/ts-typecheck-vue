@@ -1,10 +1,10 @@
-import { expect } from "chai"
 import ts from "typescript"
+import "jest-extended"
 import { createCompilerHost } from "../../src/compiler-host"
 import { ProgramOptions } from "../../src/options"
 
 describe("compiler host", () => {
-    it("returns a default host if Vue support is disabled", () => {
+    test("returns a default host if Vue support is disabled", () => {
         const options: ProgramOptions = {
             enableVueSupport: false,
             tsconfigPath: "foo",
@@ -12,7 +12,7 @@ describe("compiler host", () => {
         const compilerOptions: ts.CompilerOptions = {}
         const host = createCompilerHost(compilerOptions, options)
 
-        expect(host.fileExists("test/unit/example-sfc.vue.ts")).to.be.false
+        expect(host.fileExists("test/unit/example-sfc.vue.ts")).toBe(false)
     })
 
     describe("when Vue support is enabled", () => {
@@ -26,32 +26,32 @@ describe("compiler host", () => {
             host = createCompilerHost(compilerOptions, options)
         })
 
-        it("finds a Vue file when TypeScript asks for it using .vue.ts extension", () => {
-            expect(host.fileExists("test/unit/example-sfc.vue.ts")).to.be.true
+        test("finds a Vue file when TypeScript asks for it using .vue.ts extension", () => {
+            expect(host.fileExists("test/unit/example-sfc.vue.ts")).toBe(true)
         })
 
-        it("finds a regular TS file as well", () => {
-            expect(host.fileExists("test/unit/example.ts")).to.be.true
+        test("finds a regular TS file as well", () => {
+            expect(host.fileExists("test/unit/example.ts")).toBe(true)
         })
 
-        it("extract TS contents from a Vue file", () => {
+        test("extract TS contents from a Vue file", () => {
             const contents = host.readFile("test/unit/example-sfc.vue.ts")
-            expect(contents).to.include("export default class Foo")
+            expect(contents).toInclude("export default class Foo")
         })
 
-        it("doesn't include non-TS contents in a Vue file", () => {
+        test("doesn't include non-TS contents in a Vue file", () => {
             const contents = host.readFile("test/unit/example-sfc.vue.ts")
-            expect(contents).not.to.include("<p>")
+            expect(contents).not.toInclude("<p>")
         })
 
-        it("reads contents from a regular file", () => {
+        test("reads contents from a regular file", () => {
             const contents = host.readFile("test/unit/example.ts")
-            expect(contents).to.include("export const foo")
+            expect(contents).toInclude("export const foo")
         })
 
-        it("can get a source file from a Vue file", () => {
+        test("can get a source file from a Vue file", () => {
             const sf = host.getSourceFile("test/unit/example-sfc.vue.ts", ts.ScriptTarget.ES2015)
-            expect(sf.text).to.include("class Foo")
+            expect(sf.text).toInclude("class Foo")
         })
     })
 })

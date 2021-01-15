@@ -1,31 +1,31 @@
-import { expect } from "chai"
+import "jest-extended"
 import { createOptions } from "../../src/options"
 
 describe("options", () => {
     describe("createOptions", () => {
-        it("enables Vue support by default", () => {
+        test("enables Vue support by default", () => {
             const opts = createOptions({ tsconfigPath: "foo" })
-            expect(opts.enableVueSupport).to.be.true
+            expect(opts.enableVueSupport).toBe(true)
         })
 
-        it("keeps enableVueSupport=false", () => {
+        test("keeps enableVueSupport=false", () => {
             const opts = createOptions({ tsconfigPath: "foo", enableVueSupport: false })
-            expect(opts.enableVueSupport).to.be.false
+            expect(opts.enableVueSupport).toBe(false)
         })
 
-        it("sets a default value for pretty", () => {
+        test("sets a default value for pretty", () => {
             const opts = createOptions({ tsconfigPath: "foo" })
-            expect(opts.pretty).to.be.a("Boolean")
+            expect(opts.pretty).toBeBoolean()
         })
 
-        it("keeps pretty=false", () => {
+        test("keeps pretty=false", () => {
             const opts = createOptions({ tsconfigPath: "foo", pretty: false })
-            expect(opts.pretty).to.be.false
+            expect(opts.pretty).toBe(false)
         })
 
-        it("keeps tsconfigPath", () => {
+        test("keeps tsconfigPath", () => {
             const opts = createOptions({ tsconfigPath: "foo" })
-            expect(opts.tsconfigPath).to.equal("foo")
+            expect(opts.tsconfigPath).toBe("foo")
         })
     })
 })

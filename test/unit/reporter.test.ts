@@ -1,12 +1,12 @@
-import { expect } from "chai"
 import ts from "typescript"
+import "jest-extended"
 import { createCompilerHost } from "../../src/compiler-host"
 import { ProgramOptions } from "../../src/options"
 import { createDiagnosticsReporter } from "../../src/reporter"
 
 describe("reporters", () => {
     describe("diagonstics reporter", () => {
-        it("formats a diagnostic without pretty", () => {
+        test("formats a diagnostic without pretty", () => {
             const options: ProgramOptions = {
                 pretty: false,
                 tsconfigPath: "tsconfig.json",
@@ -16,10 +16,10 @@ describe("reporters", () => {
             const reporter = createDiagnosticsReporter(host, options)
             const result = reporter([diag])
 
-            expect(result).to.include("test/unit/example.ts(1,1): error TS1000: Not good")
+            expect(result).toInclude("test/unit/example.ts(1,1): error TS1000: Not good")
         })
 
-        it("formats a diagnostic with pretty", () => {
+        test("formats a diagnostic with pretty", () => {
             const options: ProgramOptions = {
                 pretty: true,
                 tsconfigPath: "tsconfig.json",
@@ -29,10 +29,10 @@ describe("reporters", () => {
             const reporter = createDiagnosticsReporter(host, options)
             const result = reporter([diag])
 
-            expect(result).to.include("\u001b[96mtest/unit/example.ts")
+            expect(result).toInclude("\u001b[96mtest/unit/example.ts")
         })
 
-        it("rewrites .vue.ts to .vue", () => {
+        test("rewrites .vue.ts to .vue", () => {
             const options: ProgramOptions = {
                 pretty: false,
                 tsconfigPath: "tsconfig.json",
@@ -43,7 +43,7 @@ describe("reporters", () => {
             const reporter = createDiagnosticsReporter(host, options)
             const result = reporter([diag])
 
-            expect(result).to.include("test/unit/example-sfc.vue(1,1): error TS1000: Not good")
+            expect(result).toInclude("test/unit/example-sfc.vue(1,1): error TS1000: Not good")
         })
     })
 })

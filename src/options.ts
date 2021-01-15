@@ -7,7 +7,7 @@ export interface ProgramOptions {
 }
 
 function defaultIsPretty(sys: ts.System): boolean {
-    return !!sys.writeOutputIsTTY && sys.writeOutputIsTTY()
+    return Boolean(sys.writeOutputIsTTY) && Boolean(sys.writeOutputIsTTY())
 }
 
 export function createOptions(inputOptions: ProgramOptions): ProgramOptions {
